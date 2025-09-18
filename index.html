@@ -8,7 +8,7 @@
     <link rel="stylesheet" href="css/main.css">
     <script>
         window.onload = () => {
-            let searchBox = document.getElementsByClassName('search_box')[0];
+            let searchBox = document.getElementsByClassName('search_wrap')[0];
 
 
             searchBox.addEventListener('click', () => {
@@ -18,35 +18,134 @@
 
             });
 
-        }; //script end
+
+            const daysTag = document.querySelector(".days"),
+                currentDate = document.querySelector(".current-date"),
+                prevNextIcon = document.querySelectorAll(".icons span");
+
+            // getting new date, current year and month
+            let date = new Date(),
+                currYear = date.getFullYear(),
+                currMonth = date.getMonth();
+
+            // storing full name of all months in array
+            const months = [
+                "1월",
+                "2월",
+                "3월",
+                "4월",
+                "5월",
+                "6월",
+                "7월",
+                "8월",
+                "9월",
+                "10월",
+                "11월",
+                "12월"
+            ];
+
+            const renderCalendar = () => {
+                let firstDayofMonth = new Date(currYear, currMonth, 1).getDay(), // getting first day of month
+                    lastDateofMonth = new Date(currYear, currMonth + 1, 0).getDate(), // getting last date of month
+                    lastDayofMonth = new Date(currYear, currMonth, lastDateofMonth).getDay(), // getting last day of month
+                    lastDateofLastMonth = new Date(currYear, currMonth, 0).getDate(); // getting last date of previous month
+                let liTag = "";
+
+                for (let i = firstDayofMonth; i > 0; i--) {
+                    // creating li of previous month last days
+                    liTag += `<li class="inactive">${lastDateofLastMonth - i + 1}</li>`;
+                }
+
+                for (let i = 1; i <= lastDateofMonth; i++) {
+                    // creating li of all days of current month
+                    // adding active class to li if the current day, month, and year matched
+                    let isToday =
+                        i === date.getDate() &&
+                            currMonth === new Date().getMonth() &&
+                            currYear === new Date().getFullYear()
+                            ? "active"
+                            : "";
+                    liTag += `<li class="${isToday}">${i}</li>`;
+                }
+
+                for (let i = lastDayofMonth; i < 6; i++) {
+                    // creating li of next month first days
+                    liTag += `<li class="inactive">${i - lastDayofMonth + 1}</li>`;
+                }
+                currentDate.innerText = `${currYear}년 ${months[currMonth]}`; // passing current mon and yr as currentDate text
+                daysTag.innerHTML = liTag;
+            };
+            renderCalendar();
+
+            prevNextIcon.forEach((icon) => {
+                // getting prev and next icons
+                icon.addEventListener("click", () => {
+                    // adding click event on both icons
+                    // if clicked icon is previous icon then decrement current month by 1 else increment it by 1
+                    currMonth = icon.id === "prev" ? currMonth - 1 : currMonth + 1;
+
+                    if (currMonth < 0 || currMonth > 11) {
+                        // if current month is less than 0 or greater than 11
+                        // creating a new date of current year & month and pass it as date value
+                        date = new Date(currYear, currMonth, new Date().getDate());
+                        currYear = date.getFullYear(); // updating current year with new date year
+                        currMonth = date.getMonth(); // updating current month with new date month
+                    } else {
+                        date = new Date(); // pass the current date as date value
+                    }
+                    renderCalendar(); // calling renderCalendar function
+                });
+            }); //달력 끝
+
+            document.getElementById("calendarToggle").addEventListener("click", function (e) {
+                e.preventDefault(); // a태그 링크 막기
+                const calendarWrapper = document.querySelector(".wrapper");
+                calendarWrapper.style.display = calendarWrapper.style.display === "block" ? "none" : "block";
+            }); //달력누르면보이게
+
+            const today = new Date();
+
+            const year = today.getFullYear();
+            const month = today.getMonth() + 1;
+            const day = today.getDate();
+
+            document.getElementById('year').value = year;
+            document.getElementById('month').value = month;
+            document.getElementById('day').value = day;
+        };
+
+        //script end
     </script>
 </head>
 
 <body>
     <div id="wrap">
         <header class="header">
-            <section class="section-01">
+            <section class="section">
                 <div class="inner">
-                    <h1 class="logo">
-                        <a href="#"><img src="img/코레일로고흰색png.png" alt="코레일로고-흰색"></a>
-                    </h1><!-- .logo -->
-                    <div class="menu">
-                        <ul>
-                            <li><a href="#"><img src="img/톡문의하기아이콩.png" alt="헤더-톡문의하기"></a></li>
-                            <li><a href="#"><img src="img/언어.png" alt="헤더-언어아이콘"></a></li>
-                            <li><a href="#"><img src="img/메뉴아이콘.png" alt="헤더-메뉴아이콘"></a></li>
-                        </ul>
-                    </div><!-- .menu end -->
+                    <div class="top">
+                        <h1 class="logo">
+                            <a href="#"><img src="img/코레일로고흰색png.png" alt="코레일로고-흰색"></a>
+                        </h1><!-- .logo -->
+                        <div class="menu">
+                            <ul>
+                                <li><a href="#"><img src="img/톡문의하기아이콩.png" alt="헤더-톡문의하기"></a></li>
+                                <li><a href="#"><img src="img/언어.png" alt="헤더-언어아이콘"></a></li>
+                                <li><a href="#"><img src="img/메뉴아이콘.png" alt="헤더-메뉴아이콘"></a></li>
+                            </ul>
+                        </div><!-- .menu end -->
+                    </div><!-- .top end -->
+
+                    <div class="header_nav">
+                        <ul class="gnb">
+                            <li><a href="#">홈</a></li>
+                            <li><a href="#">나의티켓</a></li>
+                            <li><a href="#">여행</a></li>
+                        </ul><!-- gnb end -->
+                    </div><!-- .header_nav end -->
 
                 </div><!-- .inner end -->
-                <div class="header_nav">
-                    <ul class="gnb">
-                        <li><a href="#">홈</a></li>
-                        <li><a href="#">나의티켓</a></li>
-                        <li><a href="#">여행</a></li>
-                    </ul><!-- gnb end -->
-                </div><!-- .header_nav end -->
-            </section><!-- section-01 end -->
+            </section><!-- section end -->
         </header><!-- .header end-->
 
 
@@ -60,57 +159,207 @@
             <section class="section-01">
                 <div class="inner">
 
-                    <div class="image_box">
+                    <div class="search_wrap">
+                        <input type="text" name="" id="" placeholder="나만의 목적지 검색하기">
+                    </div><!-- .search_wrap end -->
+
+                    <div class="text_box">
+                        <ul class="tab_menu">
+                            <li><a href="#">승차권 예매</a></li>
+                            <li><a href="#">간편구매</a></li>
+                            <li><a href="#">마일리지조회</a></li>
+                        </ul><!-- tab_menu end -->
+
+                        <ul class="check_box">
+                            <li><input type="checkbox" name="" id="" checked>왕복</li>
+                            <li><input type="checkbox" name="" id="" checked>
+                                편도 </li>
+                            <li><input type="checkbox" name="" id="" checked>다구간<img src="img/weui_help-outlined.png"
+                                    alt=""></li>
+                        </ul><!-- check_box -->
+
+                        <ul class="gnb-01">
+                            <li><a href="#">부산</a></li>
+                            <li><a href="#"><img src="img/화살표.png" alt=""></a></li>
+                            <li><a href="#">서울</a></li>
+                        </ul><!-- .gnb end -->
+
+                        <ul class="gnb-02">
+                            <li><a href="#">출발</a></li>
+                            <li><a href="#"><img src="img/순환아이콘.png" alt=""></a></li>
+                            <li><a href="#">도착</a></li>
+                        </ul><!-- gnb-02 -->
+
+                        <div class="find">
+                            <input type="checkbox" name="" id="" checkbox><a href="">가까운 날짜와 함께 조회</a>
+                        </div><!-- .find end -->
+
+                        <div class="select">
+                            <h3>인원 선택</h3>
+
+                            <div class="form">
 
 
-                        <div class="search_wrap">
-                            <div class="search_box">
-                                <input type="text" name="" id="" placeholder="나만의 목적지">
-                            </div><!-- search_box end -->
-                        </div><!-- search_wrap end -->
-                        <div class="box">
-                           
+                                <div class="form-01">
 
-                                <ul class="tap_menu">
-                                    <li><a href="#">승차권 예매</a></li>
-                                    <li><a href="#">간편구매</a></li>
-                                    <li><a href="#">마일리지 적립</a></li>
-                                </ul><!-- .tap_menu -->
+                                    <select name="option" id="">
+                                        <option value="1" selected>어른(13세이상)</option>
+                                        <option value="2" selected>어린이(6세~12세)</option>
+                                        <option value="3" selected>유아(6세미만)</option>
+                                        <option value="4" selected>경로(65세이상)</option>
+                                        <option value="5" selected>중증장애인(장애1~3급)</option>
+                                        <option value="6" selected>경증장애인(장애4~6급)</option>
+                                    </select>
+                                </div><!-- .form end -->
+                                <div class="form-02">
+                                    <select name="option" id="">
+                                        <option value="1" selected>1명</option>
+                                        <option value="2" selected>2명</option>
+                                        <option value="3" selected>3명</option>
+                                        <option value="4" selected>4명</option>
+                                        <option value="5" selected>5명</option>
+                                        <option value="6" selected>6명</option>
+                                        <option value="7" selected>7명</option>
+                                        <option value="7" selected>8명</option>
+                                    </select>
+                                </div><!-- .form end -->
+                            </div><!-- .form end -->
+                        </div><!-- select end -->
 
-                                <div class="check">
-                                    <input type="checkbox" name="왕복" value="왕복">왕복
-                                    <input type="checkbox" name="편도" value="편도">편도
-                                    <input type="checkbox" name="다구간" value="다구간">다구간 <img
-                                        src="img/weui_help-outlined.png" alt="">
-                                </div><!-- .check end -->
+                        <div class="item">
+                            <div class="text">
+                                <h3>가는날 선택</h3>
+                                <p><a href="#" id="calendarToggle">캘린더로 선택하기</a></p>
+                            </div><!-- .text end -->
 
-                                <ul class="text_change-01">
-                                    <li><a href="#">부산</a></li>
-                                    <li><a href="#"><img src="img/화살표.png" alt=""></a></li>
-                                    <li><a href="#">서울</a></li>
-                                </ul><!-- .text_change-01 end -->
-                                <ul class="text_change-02">
-                                    <li><a href="#">부산</a></li>
-                                    <li><a href="#"><img src="img/화살표.png" alt=""></a></li>
-                                    <li><a href="#">서울</a></li>
-                                </ul><!-- .text_change-02 end -->
+                            <div class="wrap">
+                                <input type="number" placeholder="YYYY" min="1900" max="2100" style="width: 80px;"> 년
+                                <input type="number" placeholder="MM" min="1" max="12" style="width: 50px;"> 월
+                                <input type="number" placeholder="DD" min="1" max="31" style="width: 50px;"> 일
+                                <input type="time" name="" id="" value="09:00:03">
+                            </div><!-- wrap end -->
+                        </div><!-- item end -->
 
-                                <div class="check2">
-                                    <input type="checkbox" name="가까운날짜와 함께 조회" id="">
-                                </div><!-- check2 end -->
+                        <!-- 캘린더보기 -->
+                        <div class="wrapper">
+                            <div class="calendar-header">
+                                <p class="current-date"></p>
+                                <div class="icons">
+                                    <span id="prev" class="material-symbols-rounded">
+                                        < </span>
+                                            <span id="next" class="material-symbols-rounded"> > </span>
+                                </div>
+                            </div><!-- calendar-header -->
+                            <div class="calendar">
+                                <ul class="weeks">
+                                    <li>일</li>
+                                    <li>월</li>
+                                    <li>화</li>
+                                    <li>수</li>
+                                    <li>목</li>
+                                    <li>금</li>
+                                    <li>토</li>
+                                </ul>
+                                <ul class="days"></ul>
+                            </div>
+                        </div>
 
 
-                           
-                        </div><!-- .box end -->
-                    </div><!-- image_box -->
+                        <button class="button">
+                            <a href="#">열차 조회 하기</a>
+                        </button><!-- button end -->
+
+
+
+                    </div><!-- .text_box end -->
+                </div><!-- .inner end -->
+            </section><!-- section-01 -->
+
+            <!-- 메인2 시작 -->
+
+            <section class="section-02">
+                <div class="inner">
+                    <div class="text">
+                        <h2>이런 서비스는 어떠세요?</h2>
+                    </div><!-- .text end -->
+                    <div class="wrap">
+                        <ul class="button">
+                            <li><button><img src="img/지도.png" alt="메인2-지도아이콘">길안내</button></li>
+                            <li><button><img src="img/실시간열차위치.png" alt="메인2-실시간열차">실시간 열차 위치</button></li>
+                            <li><button><img src="img/주차.png" alt="메인2-주차">주차/주차 정산</button></li>
+                            <li><button><img src="img/주차 (1).png" alt="메인2-공항버스">공항 버스</button></li>
+                            <li><button><img src="img/렌터키.png" alt="메인2-렌터카">렌터카</button></li>
+                            <li><button><img src="img/카셰어링.png" alt="매인2-카셰어링">카셰어링</button></li>
+                            <li><button><img src="img/짐배송.png" alt="메인2-짐배송">짐배송</button></li>
+                            <li><button><img src="img/커피빵.png" alt="메인2-커피빵">커피&빵</button></li>
+                            <li><button><img src="img/레저.png" alt="메인2-레저">레저 이용권</button></li>
+                            <li><button><img src="img/택시.png" alt="메인2-관광">관광 택시</button></li>
+                        </ul><!-- button end -->
+                    </div><!-- .wrap end -->
                 </div><!-- inner end -->
+            </section><!-- .section-02 -->
 
 
-            </section><!-- .section-01 end -->
+            <!-- 메인3 -->
+            <section class="section-03">
+                <div class="inner">
+                    <div class="image">
+                        <img src="img/여행지.jpg" alt="여행지사진">
+                    </div><!-- image end -->
+                    <div class="text">
+                        <h3>지친 일상, <br />
+                            쉼표가 필요한<br />
+                            당신을 위해</h3>
+                        <p><a href="#">추천여행지 구경하기</a></p>
+                    </div><!-- .text end -->
+                </div><!-- .inner end -->
+            </section><!-- .section-03 end -->
+
+            <!-- 메인4 -->
 
 
+            <section class="section-04">
+                <div class="inner">
+                    <div class="text_box">
+                        <h3>Recommended Events</h3><!-- bold/24 -->
+                        <p>코레일에서 추천하는 이벤트</p><!-- 12 -->
+
+                    </div><!-- text_box end -->
 
 
+                    <div class="image_box">
+                        <ul>
+                            <li><a href="#"><img src="img/카카오페이.png" alt=""></a></li>
+                            <li><a href="#"><img src="img/2토스.png" alt=""></a></li>
+                            <li><a href="#"><img src="img/베리언트3.png" alt=""></a></li>
+                            <li><a href="#"><img src="img/베리언트4.png" alt=""></a></li>
+                            <li><a href="#"><img src="img/카카오페이.png" alt=""></a></li>
+                            <li><a href="#"><img src="img/2토스.png" alt=""></a></li>
+                            <li><a href="#"><img src="img/베리언트3.png" alt=""></a></li>
+                            <li><a href="#"><img src="img/베리언트4.png" alt=""></a></li>
+
+                            <!-- 반복 -->
+                            <li><a href="#"><img src="img/카카오페이.png" alt=""></a></li>
+                            <li><a href="#"><img src="img/2토스.png" alt=""></a></li>
+                            <li><a href="#"><img src="img/베리언트3.png" alt=""></a></li>
+                            <li><a href="#"><img src="img/베리언트4.png" alt=""></a></li>
+                        </ul>
+                    </div><!-- imge_box end -->
+                </div><!-- .inner end -->
+            </section><!-- section-04 end -->
+
+            <!-- 메인5 -->
+             <section class="section-05">
+                <div class="icon_box">
+                    <ul>
+                        <li><a href="#"><img src="img/유튜브.png" alt=""></a></li>
+                        <li><a href="#"><img src="img/페이스북.png" alt=""></a></li>
+                        <li><a href="#"><img src="img/인스타그램.png" alt=""></a></li>
+                        <li><a href="#"><img src="img/밴드.png" alt=""></a></li>
+                        <li><a href="#"><img src="img/액스.png" alt=""></a></li>
+                    </ul>
+                </div><!-- icon_box end -->
+             </section><!-- section-05 -->
         </main><!-- .main end -->
         <div class="footer">
 
