@@ -216,6 +216,7 @@ body {
 
 .section-01 .inner .text_box .check_box input {
     width: 14px;
+
 }
 
 .section-01 .inner .text_box .check_box li {
@@ -223,6 +224,7 @@ body {
     line-height: 17px;
     display: flex;
     align-items: center;
+    gap: 5px;
 
 }
 
@@ -523,8 +525,11 @@ header .current-date {
 .section-02 .inner .wrap .button li {
     width: 48%;
     height: 48px;
-
-
+    display: flex;
+    
+    gap: 11px;
+    line-height: 48px;
+    align-items: center;
     border: 1px solid #E5E8EB;
     border-radius: 4px;
     padding-left: 14px;
@@ -534,7 +539,7 @@ header .current-date {
 }
 
 
-.section-02 .inner .wrap .button li button {
+.section-02 .inner .wrap .button li a {
     
     font-size: 14px;
     display: flex;
@@ -543,9 +548,10 @@ header .current-date {
     line-height: 48px;
     gap: 11px;
     white-space: nowrap; /* 줄바꿈 금지 */
+
 }
 
-.section-02 .inner .wrap .button li button img {
+.section-02 .inner .wrap .button li a img {
     width: 24px;
     object-fit: cover;
 
@@ -608,8 +614,7 @@ header .current-date {
 
 /* 메인4 */
 .section-04 .inner {
-    width: calc(100% - 40px);
-    margin: 0 auto;
+   
 }
 
 .section-04 .inner .text_box {
@@ -620,33 +625,33 @@ header .current-date {
 .section-04 .inner .text_box h3 {
     font-size: 24px;
     font-weight: bold;
-    padding-bottom: 10px;
+    padding-bottom: 20px;
 
 }
 
 .section-04 .inner .text_box p {
-    font-size: 12px;
+    font-size: 14px;
 }
 
 .section-04 .inner .image_box {
     overflow: hidden;
 
-    display: block;
+  
 }
 
 .section-04 .inner .image_box ul {
 
     display: flex;
-    justify-content: space-between;
+    
     gap: 13px;
-    animation: image_boxSlide 20s linear infinite;
+    animation: image_boxSlide 50s linear infinite;
     /* 이름    시간 반복횟수  반복방향  움직임종류 */
-    width: calc(100%*4);
-    object-fit: cover;
+  
+    
 }
 
 .section-04 .inner .image_box ul li {
-    width: 100%;
+     min-width: 240px;
 
 }
 
@@ -662,26 +667,27 @@ header .current-date {
 
 /* 메인 5 */
 .section-05 .icon_box {
-    margin: 114px 0 83px 0;
+    margin: 114px 0;
 }
 
 .section-05 .icon_box ul {
     display: flex;
     justify-content: center;
-    gap: 24px;
+    gap: 50px;
 
 }
 
 .section-05 .icon_box ul li {
     width: 24px;
-    height: 24px;
+    object-fit: cover;
+   
 
 }
 
 .section-05 .icon_box ul li a {}
 
 .section-05 .icon_box ul li a img {
-    width: 24px;
+   
     height: 24px;
     object-fit: cover;
 }
@@ -693,23 +699,9 @@ header .current-date {
 
     }
 
-    25% {
-        transform: translateX(-25%);
-
-    }
-
-    50% {
-        transform: translateX(-50%);
-
-    }
-
-    75% {
-        transform: translateX(-75%);
-
-    }
-
+    
     100% {
-        transform: translateX(-150%);
+        transform: translateX(-250%);
     }
 }
 
