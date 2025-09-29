@@ -3,6 +3,7 @@
 
 body {
     background-color: #005BAC;
+    
 }
 
 #wrap {
@@ -12,20 +13,26 @@ body {
 }
 
 /* 헤더 */
-.section {
-    margin-top: 60px;
-    position: sticky;
+.header {
+position: sticky;
     top: 0;
     z-index: 1000;
     background-color: #005BAC;
 }
 
-.section .inner {
-    width: calc(100% - 40px);
-
-    margin: 0 auto;
-
+.section {
+   
+ padding-top: 60px;
 }
+.section .inner {
+    
+
+   width: calc(100% - 40px);
+    margin: 0 auto;
+  
+}
+
+
 
 .section .inner .top {
     display: flex;
@@ -135,11 +142,13 @@ body {
 }
 
 .section-01 .inner .search_wrap {
+    
     text-align: center;
 
+    display: flex;
 
     margin: 25px 0;
-
+      position: relative;
 }
 
 .section-01 .inner .search_wrap input {
@@ -147,10 +156,11 @@ body {
     line-height: 52px;
     border-radius: 10px;
     border: 3px solid #005BAC;
-    font-size: 24px;
-    color: 9F9F9F;
+    font-size: 18px;
+    color: #9F9F9F;
     text-align: center;
     background-color: transparent;
+  
 }
 
 /* .text_box */
@@ -207,10 +217,10 @@ body {
 
 .section-01 .inner .text_box .check_box {
     display: flex;
-    justify-content: space-between;
-    width: 186.3px;
+    justify-content: center;
+    gap: 40px;
     margin: 0 auto;
-    padding: 20px 0 20px;
+    padding: 30px 0 30px;
 
 }
 
@@ -231,63 +241,66 @@ body {
 .section-01 .inner .text_box .gnb-01 {
     display: flex;
     justify-content: center;
-    gap: 52px;
+    gap: 70px;
     align-items: center;
     margin: 0 auto;
-    line-height: 29px;
+    line-height: 30px;
     text-align: center;
 
 }
 
 .section-01 .inner .text_box .gnb-01 li {
-    font-size: 24px;
+    font-size: 30px;
     font-weight: bold;
 }
 
 .section-01 .inner .text_box .gnb-01 li a img {
-    width: 24px;
-    height: 24px;
+    width: 30px;
+    height: 30px;
     object-fit: cover;
 }
 
 .section-01 .inner .text_box .gnb-02 {
     display: flex;
     justify-content: center;
-    gap: 66px;
-    padding-bottom: 15px;
-    line-height: 29px;
+    gap: 80px;
+    padding-bottom: 20px;
+    line-height: 30px;
     text-align: center;
 }
 
 .section-01 .inner .text_box .gnb-02 li {
-    font-size: 14px;
+    font-size: 16px;
     color: #8E8E8E;
 }
 
 .section-01 .inner .text_box .gnb-02 li a img {
-    width: 14px;
-    height: 14px;
+    width: 16px;
+    height: 16px;
     object-fit: cover;
 }
 
 .section-01 .inner .text_box .find {
-    font-size: 12px;
+    font-size: 14px;
     border-bottom: 1px dotted #C0C0C0;
-    padding-bottom: 18px;
+    padding-bottom: 20px;
     display: flex;
     justify-content: center;
-
+    align-items: center;
 }
 
 .section-01 .inner .text_box .find input {
-    font-size: 12px;
+    font-size: 14px;
     border-bottom: 5px;
 }
 
 .section-01 .inner .find input[type="checkbox"] {
-    transform: scale(0.75);
+    transform: scale(1);
     margin-right: 4px;
     accent-color: #005BAC;
+  
+    
+
 }
 
 /* 캘린더스타일 */
@@ -308,15 +321,26 @@ body {
     align-items: center;
     padding: 25px 30px 10px;
     justify-content: space-between;
+    width: 30px;
+    height: 30px;
+
 }
+/* 위더스값, 포지션 앱솔루트,렐러티브 주기 */
 
 .calendar-header .icons {
-    gap: 20px;
+    gap: 5px;
+     height: 30px;
+    width: 30px;
+    display: flex;
+    justify-content: space-between;
+    line-height: 30px;
+    align-items: center;
+    display: block;
 }
 
-.calendar-header .icons span {
-    height: 38px;
-    width: 38px;
+.calendar-header .icons span  {
+   
+    display: block;
     margin: 0 1px;
     cursor: pointer;
     color: #878787;
@@ -327,6 +351,11 @@ body {
     border-radius: 50%;
     cursor: pointer;
 
+}
+.calendar-header .icons span img {
+width: 100%;
+height: 100%;
+    object-fit: cover;
 }
 
 
@@ -409,6 +438,7 @@ header .current-date {
     /*  background: #333; */
 }
 
+/* 캘린더끝 */
 
 
 .section-01 .inner .text_box .select {
@@ -419,7 +449,7 @@ header .current-date {
 }
 
 .section-01 .inner .text_box .select h3 {
-    font-size: 13px;
+    font-size: 14px;
     color: #8E8E8E;
 
 }
@@ -446,11 +476,14 @@ header .current-date {
     display: flex;
     justify-content: space-between;
     margin-bottom: 20px;
+   
 }
 
 .section-01 .inner .text_box .item .text h3 {
     font-size: 13px;
-    color: 8E8E8E;
+    color: #8E8E8E;
+     
+    
 }
 
 .section-01 .inner .text_box .item .text p {
@@ -474,17 +507,22 @@ header .current-date {
 
 .section-01 .inner .text_box .button {
     width: 100%;
-    height: 34.14px;
+    height: 40px;
     background-color: #005BAC;
-    color: #fff;
-    font-size: 16px;
+    display: block;
     border-radius: 10px;
     text-align: center;
     line-height: 34.14px;
     margin-bottom: 3px;
+    align-items: center;
 
 
+}
 
+.section-01 .inner .text_box .button a {
+color: #fff;
+    font-size: 16px;
+     display: block;
 }
 
 /* 메인2 시작  */
@@ -620,6 +658,8 @@ header .current-date {
 .section-04 .inner .text_box {
     margin-bottom: 20px;
     color: #fff;
+    padding-left: 20px;
+    
 }
 
 .section-04 .inner .text_box h3 {
@@ -635,6 +675,7 @@ header .current-date {
 
 .section-04 .inner .image_box {
     overflow: hidden;
+    border-radius: 20px;
 
   
 }
@@ -667,13 +708,13 @@ header .current-date {
 
 /* 메인 5 */
 .section-05 .icon_box {
-    margin: 114px 0;
+    margin: 114px auto;
 }
 
 .section-05 .icon_box ul {
     display: flex;
     justify-content: center;
-    gap: 50px;
+    gap: 30px;
 
 }
 
@@ -708,4 +749,214 @@ header .current-date {
 .image_box ul li a img {
     white-space: nowrap;
     /* 옆으로배치 */
+}
+
+
+@media screen and (max-width: 380px) {
+    .section-01 .inner .text_box .tab_menu {
+        gap: 15px;
+    }
+
+
+   .section-01 .inner .text_box .tab_menu li {
+    font-size: 14px;
+   }
+.section-01 .inner .text_box .check_box {
+
+    gap: 20px;
+    
+}
+.section-01 .inner .text_box .tab_menu li::before {
+    content: '';
+    width: 1px;
+    height: 12px;
+    background-color: #8E8E8E;
+    position: absolute;
+    top: 50%;
+    left: -7.5px;
+    transform: translateY(-50%);
+}
+
+
+.section-01 .inner .text_box .gnb-01 {
+   
+    gap: 30px;
+
+
+}
+.section-01 .inner .text_box .gnb-01 li {
+font-size: 25px;
+}
+
+
+.section-01 .inner .text_box .gnb-02 {
+    
+    gap: 40px;
+    padding-bottom: 20px;
+    
+}
+.section-01 .inner .text_box .gnb-02 {
+font-size: 14px;
+
+}
+
+.section-01 .inner .text_box .find {
+    font-size: 13px;
+}
+
+
+/* 메인2 */
+
+
+
+
+.section-01 .inner .text_box .select {
+
+display: flex;
+flex-direction: column;
+
+
+}
+.section-01 .inner .text_box .select .form {
+display: flex;
+justify-content: flex-start;
+gap: 10px;
+margin-top: 5px;
+}
+.section-01 .inner .text_box .item .text {
+    margin-bottom: 10px;
+}
+
+
+
+
+.section-02 .inner .wrap .button li {
+    width: 98%;
+ 
+}
+
+
+/* 캘린더 */
+.wrapper {
+    width: 100%;
+ 
+}
+.wrapper .calendar-header {
+   
+    padding: 25px 30px 10px;
+    justify-content: space-between;
+}
+
+.calendar-header .icons {
+    gap: 2px;
+    
+    display: flex;
+    justify-content: space-between;
+}
+
+.calendar-header .icons span {
+    height: 16px;
+    width: 16px;
+    
+    cursor: pointer;
+    color: #878787;
+    text-align: center;
+    line-height: 38px;
+    font-size: 1.9rem;
+    user-select: none;
+    border-radius: 50%;
+    cursor: pointer;
+   
+
+}
+.calendar-header .icons span img {
+width: 100%;
+height: 100%;
+object-fit: cover;
+
+}
+
+
+header .current-date {
+    font-size: 1.45rem;
+    font-weight: 500;
+}
+
+.calendar {
+    padding: 20px;
+}
+
+.calendar ul {
+    display: flex;
+    flex-wrap: wrap;
+    list-style: none;
+    text-align: center;
+}
+
+.calendar .days {
+    margin-bottom: 20px;
+}
+
+.calendar li {
+    color: #333;
+    /* for black */
+    /* color: #fff; */
+    width: calc(100% / 7);
+    font-size: 1.07rem;
+}
+
+.calendar .weeks li {
+    font-weight: 500;
+    cursor: default;
+}
+
+.calendar .weeks li:first-child {
+    color: red;
+}
+
+.calendar .weeks li:last-child {
+    color: #005BAC;
+
+}
+
+.calendar .days li {
+    z-index: 1;
+    cursor: pointer;
+    position: relative;
+    margin-top: 30px;
+}
+
+.days li.inactive {
+    color: #aaa;
+}
+
+.days li.active {
+    color: #fff;
+}
+
+.days li::before {
+    position: absolute;
+    content: "";
+    left: 50%;
+    top: 50%;
+    height: 40px;
+    width: 40px;
+    z-index: -1;
+    border-radius: 50%;
+    transform: translate(-50%, -50%);
+}
+
+.days li.active::before {
+    background: #005BAC;
+}
+
+.days li:not(.active):hover::before {
+    background: #f5ecec;
+    /*  for black */
+    /*  background: #333; */
+}
+
+
+
+
 }
